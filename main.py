@@ -9,7 +9,7 @@ from sklearn.metrics import mean_squared_error
 
 
 def main():
-	originalDataset = files.getDataset(filename='original-data/ITSA4-20140919-20180919.csv')
+	originalDataset = files.getDataset(filename='../original-data/ITSA4-20140919-20180919.csv')
 	print("FINISH GET ORIGINAL DATASET")
 
 	preprocessedDataset = ppc.preprocessing(daysAhead=1, dataset=originalDataset)
@@ -27,10 +27,11 @@ def main():
 			print(str(sizeDataset) +';'+ str(trainPercent) + ';' + str(mse) + ';' + str(mape) + ';')
 			infos.append(files.DataInfo(sizeDataset=sizeDataset, trainPercent=trainPercent, mse=mse, mape=mape))
 			
+	files.csvFile(infos)
 
 	print("dataframeCompared")
 
-	print(dataFrameCompared)
+	#print(dataFrameCompared)
 	print("PRINCIPAL")
 
 	pl.plot(dataFrameCompared=dataFrameCompared)
