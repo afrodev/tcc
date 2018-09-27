@@ -76,9 +76,9 @@ def executeSVRSlidingWindowing(features, originalDataset, sizeDataset=550, train
 
 		# Prediz valores do dataset de teste
 		y_predicted_value = trainedModel.predict(x_input_test)[0]
-		print('trainSize go from: ' + str(offset) + ' to ' + str(trainLength+offset))
-		print('testSize go from: ' + str(offset+trainLength) + ' to ' + str(lengthDataset))
-		print('offset: ' + str(offset) + ' --- predict:' + str(y_predicted_value) + ' --- original:' + str(y_original_value))
+		#print('trainSize go from: ' + str(offset) + ' to ' + str(trainLength+offset))
+		#print('testSize go from: ' + str(offset+trainLength) + ' to ' + str(lengthDataset))
+		#print('offset: ' + str(offset) + ' --- predict:' + str(y_predicted_value) + ' --- original:' + str(y_original_value))
 		
 		y_original_values.append(y_original_value)
 		y_predicted_values.append(y_predicted_value)

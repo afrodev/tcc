@@ -9,7 +9,7 @@ def getResultsSlidingWindow(stockName, dataset, daysAhead, rangeSizeDataset, ran
 			i = wdw.slidingWindow(dataset=dataset, daysAhead=daysAhead, sizeDataset=sizeDataset, trainPercent=trainPercent)
 			infos.append(i)
 
-	files.csvFile(name=stockName + '-slidingWindow', rowsInfo=infos)
+	files.csvFile(name=stockName + '-slidingWindow-' + str(daysAhead) + '-daysAhead', rowsInfo=infos)
 
 def getResultsFixedWindow(stockName, dataset, daysAhead, rangeSizeDataset, rangeTrainPercent):
 	infos = []
@@ -19,4 +19,4 @@ def getResultsFixedWindow(stockName, dataset, daysAhead, rangeSizeDataset, range
 			i = wdw.slidingWindow(dataset=dataset, daysAhead=daysAhead, sizeDataset=sizeDataset, trainPercent=trainPercent)
 			infos.append(i)
 			
-	files.csvFile(name=stockName + '-fixedWindow', rowsInfo=infos)
+	files.csvFile(name=stockName + '-fixedWindow-' + str(daysAhead) + '-daysAhead', rowsInfo=infos)
