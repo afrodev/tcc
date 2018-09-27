@@ -12,14 +12,14 @@ def getDataset(filename):
 
 # Data Info to agregate all infos
 class DataInfo:
-	def __init__(self, sizeDataset, trainPercent, mse, mape):
+	def __init__(self, sizeDataset, trainPercent, mse, mape, dataFrameCompared):
 		self.sizeDataset = sizeDataset
 		self.trainPercent = trainPercent
 		self.mse = mse
 		self.mape = mape
 		self.sizeTrainDataset = int(sizeDataset * trainPercent)
 		self.sizeTestDataset = sizeDataset - self.sizeTrainDataset 
-
+		self.dataFrameCompared = dataFrameCompared
 
 
 def csvFile(name, rowsInfo):
