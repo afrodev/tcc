@@ -7,39 +7,39 @@ import numpy as np
 import windowing as wdw
 import results as rs
 
-def allResults():
+def allResults(stockName, rangeSizeDataset, rangeTrainPercent):
 	originalDataset = files.getDataset(filename='../original-data/' + 'ITSA4-20140919-20180919.csv')
 
 	preprocessedDataset1Day = ppc.preprocessing(daysAhead=1, dataset=originalDataset)
 	preprocessedDataset5Days = ppc.preprocessing(daysAhead=5, dataset=originalDataset)
 	preprocessedDataset22Days = ppc.preprocessing(daysAhead=22, dataset=originalDataset)
-	stockName = 'itsa4'
-
-
+	
 	print('------ FIXED WINDOW 1 DAY -------')
 	rs.getResultsFixedWindow(stockName=stockName, dataset=preprocessedDataset1Day, daysAhead=1, 
-		rangeSizeDataset=range(50,51), rangeTrainPercent=np.arange(0.5, 0.90, 0.01))
+		rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 
 	print('------ FIXED WINDOW 5 DAYS -------')
 	rs.getResultsFixedWindow(stockName=stockName, dataset=preprocessedDataset5Days, daysAhead=5, 
-		rangeSizeDataset=range(50,51), rangeTrainPercent=np.arange(0.5, 0.90, 0.01))
+		rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 
 	print('------ FIXED WINDOW 22 DAYS -------')
 	rs.getResultsFixedWindow(stockName=stockName, dataset=preprocessedDataset22Days, daysAhead=22, 
-		rangeSizeDataset=range(50,51), rangeTrainPercent=np.arange(0.5, 0.90, 0.01))
+		rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 
 
 	print('------ SLIDING WINDOW 1 DAY -------')
 	rs.getResultsSlidingWindow(stockName=stockName, dataset=preprocessedDataset1Day, daysAhead=1, 
-		rangeSizeDataset=range(50,51), rangeTrainPercent=np.arange(0.5, 0.90, 0.01))
+		rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 
 	print('------ SLIDING WINDOW 5 DAYS -------')
 	rs.getResultsSlidingWindow(stockName=stockName, dataset=preprocessedDataset5Days, daysAhead=5, 
-		rangeSizeDataset=range(50,51), rangeTrainPercent=np.arange(0.5, 0.90, 0.01))
+		rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 
 	print('------ SLIDING WINDOW 22 DAYS -------')
 	rs.getResultsSlidingWindow(stockName=stockName, dataset=preprocessedDataset22Days, daysAhead=22, 
-		rangeSizeDataset=range(50,51), rangeTrainPercent=np.arange(0.5, 0.90, 0.01))
+		rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
+
+	print('------ ALL DATA FINISHED -------')
 
 def oneResult():
 	daysAhead = 1
@@ -53,8 +53,12 @@ def oneResult():
 	pl.plot(dataFrameCompared=dataInfoSlidingWindow.dataFrameCompared, title='REAL vs Predito')
 
 def main():
+	stockName = 'itsa4'
+	rangeSizeDataset = range(50, 1000)
+	rangeTrainPercent = np.arange(0.5, 0.90, 0.01)
+
+	allResults(stockName=stockName, rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 	#oneResult()
-	allResults()
 
 main()
 
