@@ -23,7 +23,7 @@ class DataInfo:
 
 
 def csvFile(name, rowsInfo):
-	filename = 'results-' + str(name) + '.csv'
+	filename = './results/results-' + str(name) + '.csv'
 	with open(filename, 'w', newline='') as csvfile:
 	    spamwriter = csv.writer(csvfile, delimiter=';',
 	                            quotechar=' ', quoting=csv.QUOTE_MINIMAL)

@@ -7,8 +7,8 @@ import numpy as np
 import windowing as wdw
 import results as rs
 
-def allResults(stockName, rangeSizeDataset, rangeTrainPercent):
-	originalDataset = files.getDataset(filename='../original-data/' + 'ITSA4-20140919-20180919.csv')
+def allResults(stockName, filename, rangeSizeDataset, rangeTrainPercent):
+	originalDataset = files.getDataset(filename='../original-data/' + filename)
 
 	preprocessedDataset1Day = ppc.preprocessing(daysAhead=1, dataset=originalDataset)
 	preprocessedDataset5Days = ppc.preprocessing(daysAhead=5, dataset=originalDataset)
@@ -39,7 +39,7 @@ def allResults(stockName, rangeSizeDataset, rangeTrainPercent):
 	rs.getResultsSlidingWindow(stockName=stockName, dataset=preprocessedDataset22Days, daysAhead=22, 
 		rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 
-	print('------ ALL DATA FINISHED -------')
+	print('------ ALL DATA FROM ' + stockName + ' FINISHED -------')
 
 def oneResult():
 	daysAhead = 1
@@ -53,11 +53,16 @@ def oneResult():
 	pl.plot(dataFrameCompared=dataInfoSlidingWindow.dataFrameCompared, title='REAL vs Predito')
 
 def main():
-	stockName = 'itsa4'
+	stockNames = ['itsa4', 'abcb4', 'bbas3']
+	stockFilenames = ['ITSA4-20140919-20180919.csv', 'ABCB4.SA-20140910-20180922.csv', 'BBAS3.SA-20140910-20180922.csv']
 	rangeSizeDataset = range(50, 1000)
 	rangeTrainPercent = np.arange(0.5, 0.90, 0.01)
 
-	allResults(stockName=stockName, rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
+	for idx in range(0, len(stockNames)):
+		stockName = stockNames[idx]
+		stockFilename = stockFilenames[idx]
+
+		allResults(stockName=stockName, filename=stockFilename, rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 	#oneResult()
 
 main()
