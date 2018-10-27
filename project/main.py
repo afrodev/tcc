@@ -14,17 +14,17 @@ def allResults(stockName, filename, rangeSizeDataset, rangeTrainPercent):
 	preprocessedDataset5Days = ppc.preprocessing(daysAhead=5, dataset=originalDataset)
 	preprocessedDataset22Days = ppc.preprocessing(daysAhead=22, dataset=originalDataset)
 	
-	print('------ FIXED WINDOW 1 DAY -------')
-	rs.getResultsFixedWindow(stockName=stockName, dataset=preprocessedDataset1Day, daysAhead=1, 
-		rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
+	# print('------ FIXED WINDOW 1 DAY -------')
+	# rs.getResultsFixedWindow(stockName=stockName, dataset=preprocessedDataset1Day, daysAhead=1, 
+	# 	rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 
-	print('------ FIXED WINDOW 5 DAYS -------')
-	rs.getResultsFixedWindow(stockName=stockName, dataset=preprocessedDataset5Days, daysAhead=5, 
-		rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
+	# print('------ FIXED WINDOW 5 DAYS -------')
+	# rs.getResultsFixedWindow(stockName=stockName, dataset=preprocessedDataset5Days, daysAhead=5, 
+	# 	rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 
-	print('------ FIXED WINDOW 22 DAYS -------')
-	rs.getResultsFixedWindow(stockName=stockName, dataset=preprocessedDataset22Days, daysAhead=22, 
-		rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
+	# print('------ FIXED WINDOW 22 DAYS -------')
+	# rs.getResultsFixedWindow(stockName=stockName, dataset=preprocessedDataset22Days, daysAhead=22, 
+	# 	rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 
 
 	print('------ SLIDING WINDOW 1 DAY -------')
@@ -66,6 +66,9 @@ def main():
 	#oneResult()
 
 main()
+
+
+
 
 
 '''

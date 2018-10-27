@@ -47,7 +47,7 @@ def executeSVRSlidingWindowing(features, originalDataset, sizeDataset=550, train
 
 	lengthDataset = len(transformedDataset)
 	trainLength = int(lengthDataset * trainPercent)
-	testLength = lengthDataset - trainLength 
+	testLength = lengthDataset - trainLength
 
 	# Separando dados de entrada e de saída
 	inputFeatures = features[:-1] # Get features from the first to one before the last
@@ -66,11 +66,11 @@ def executeSVRSlidingWindowing(features, originalDataset, sizeDataset=550, train
 		x_input = trainDataset[inputFeatures]
 		y_output = trainDataset[outputFeatures].values.ravel()
 
-		# Treinando dados de entrada 
-		svr_rbf = SVR(kernel='rbf')#, verbose=True)
+		# Treinando dados de entrada ;           jj
+		svr_rbf = SVR(kernel='rbf', verbose=True)
 		trainedModel = svr_rbf.fit(x_input, y_output)
 
-		# Separando os dados de entrada e os de saída
+		# Separando os dados de en1trada e os de saída
 		x_input_test = testDataset[inputFeatures]
 		y_original_value = testDataset[outputFeatures].values.ravel()[0]
 

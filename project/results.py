@@ -16,7 +16,7 @@ def getResultsFixedWindow(stockName, dataset, daysAhead, rangeSizeDataset, range
 
 	for sizeDataset in rangeSizeDataset:
 		for trainPercent in rangeTrainPercent:
-			i = wdw.slidingWindow(dataset=dataset, daysAhead=daysAhead, sizeDataset=sizeDataset, trainPercent=trainPercent)
+			i = wdw.fixedWindow(dataset=dataset, daysAhead=daysAhead, sizeDataset=sizeDataset, trainPercent=trainPercent)
 			infos.append(i)
 			
 	files.csvFile(name=stockName + '-fixedWindow-' + str(daysAhead) + '-daysAhead', rowsInfo=infos)
