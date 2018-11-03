@@ -1,0 +1,3 @@
+SizeDataset;TrainPercent;sizeTrainDataset;sizeTestDataset;mse;mape
+800;0.8;640;160;9.85899503173;5.68277924343
+800;0.81;648;152;10.3372815678;5.77937363202

@@ -55,8 +55,8 @@ def oneResult():
 def main():
 	stockNames = ['itsa4', 'abcb4', 'bbas3']
 	stockFilenames = ['ITSA4-20140919-20180919.csv', 'ABCB4.SA-20140910-20180922.csv', 'BBAS3.SA-20140910-20180922.csv']
-	rangeSizeDataset = range(50, 1000)
-	rangeTrainPercent = np.arange(0.5, 0.90, 0.01)
+	rangeSizeDataset = range(800, 801)
+	rangeTrainPercent = np.arange(0.8, 0.81, 0.01)
 
 	for idx in range(0, len(stockNames)):
 		stockName = stockNames[idx]
