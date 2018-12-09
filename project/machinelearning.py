@@ -45,6 +45,7 @@ def executeSVRSlidingWindowing(features, originalDataset, sizeDataset=550, train
 	originalDataset = originalDataset[:sizeDataset]
 	transformedDataset = originalDataset[features]
 
+
 	lengthDataset = len(transformedDataset)
 	trainLength = int(lengthDataset * trainPercent)
 	testLength = lengthDataset - trainLength
@@ -52,6 +53,7 @@ def executeSVRSlidingWindowing(features, originalDataset, sizeDataset=550, train
 	# Separando dados de entrada e de saída
 	inputFeatures = features[:-1] # Get features from the first to one before the last
 	outputFeatures = features[-1] # Get the last one on array
+	
 
 
 	y_original_values = []
@@ -62,12 +64,19 @@ def executeSVRSlidingWindowing(features, originalDataset, sizeDataset=550, train
 	for offset in range(0, testLength):
 		trainDataset = transformedDataset[offset:trainLength+offset]
 		testDataset = transformedDataset[offset+trainLength:lengthDataset]
+		
+
+		print('trainSize go from: ' + str(offset) + ' to ' + str(trainLength+offset) + ' || testSize go from: ' + str(offset+trainLength) + ' to ' + str(lengthDataset))
+		print('last train value' + str(trainDataset.values.ravel()[-1]) + ' || first test value' + str(testDataset.values.ravel()[0]))
+
+		# print('last train value: ' + str(transformedDataset[trainLength+offset]))
+		# print('first test value: ' + str(transformedDataset[offset+trainLength]))
 
 		x_input = trainDataset[inputFeatures]
 		y_output = trainDataset[outputFeatures].values.ravel()
 
 		# Treinando dados de entrada ;           jj
-		svr_rbf = SVR(kernel='rbf', verbose=True)
+		svr_rbf = SVR(kernel='rbf', verbose=False)
 		trainedModel = svr_rbf.fit(x_input, y_output)
 
 		# Separando os dados de en1trada e os de saída
@@ -76,13 +85,11 @@ def executeSVRSlidingWindowing(features, originalDataset, sizeDataset=550, train
 
 		# Prediz valores do dataset de teste
 		y_predicted_value = trainedModel.predict(x_input_test)[0]
-		#print('trainSize go from: ' + str(offset) + ' to ' + str(trainLength+offset))
-		#print('testSize go from: ' + str(offset+trainLength) + ' to ' + str(lengthDataset))
-		#print('offset: ' + str(offset) + ' --- predict:' + str(y_predicted_value) + ' --- original:' + str(y_original_value))
 		
 		y_original_values.append(y_original_value)
 		y_predicted_values.append(y_predicted_value)
-
+		#print('offset: ' + str(offset) + ' --- predict:' + str(y_predicted_value) + ' --- original:' + str(y_original_value))
+		
 	
 	testDataset = transformedDataset[trainLength:lengthDataset]
 	data = {'date': testDataset.index, 'real': y_original_values, 'predicted': y_predicted_values}

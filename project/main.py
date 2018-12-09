@@ -42,14 +42,19 @@ def allResults(stockName, filename, rangeSizeDataset, rangeTrainPercent):
 	print('------ ALL DATA FROM ' + stockName + ' FINISHED -------')
 
 def oneResult():
-	daysAhead = 1
-	sizeDataset = 550
-	trainPercent = 0.7
+	daysAhead = 5
+	sizeDataset = 338
+	trainPercent = 0.82
 
-	originalDataset = files.getDataset(filename='../original-data/' + 'ITSA4-20140919-20180919.csv')
+	originalDataset = files.getDataset(filename='../original-data/' + 'BBAS3.SA-20140910-20180922.csv')
 	preprocessedDataset = ppc.preprocessing(daysAhead=daysAhead, dataset=originalDataset)
-	
+		 
+	print('INITIAL DATE: ' + str(originalDataset[:sizeDataset]))
+	# print('INITIAL DATE: ' + str(originalDataset[:sizeDataset][0]))
+	# print('FINAL DATE: ' + str(originalDataset[:sizeDataset].values[-1]))
+
 	dataInfoSlidingWindow = wdw.slidingWindow(dataset=preprocessedDataset, daysAhead=daysAhead, sizeDataset=sizeDataset, trainPercent=trainPercent)
+	print(dataInfoSlidingWindow.dataFrameCompared)
 	pl.plot(dataFrameCompared=dataInfoSlidingWindow.dataFrameCompared, title='REAL vs Predito')
 
 def main():
@@ -65,7 +70,9 @@ def main():
 		allResults(stockName=stockName, filename=stockFilename, rangeSizeDataset=rangeSizeDataset, rangeTrainPercent=rangeTrainPercent)
 	#oneResult()
 
-main()
+#main()
+
+oneResult()
 
 
 
